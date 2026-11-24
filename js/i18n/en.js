@@ -1,7 +1,7 @@
 // Student-facing text, English. Keep keys and list lengths identical in he.js, ar.js and en.js.
 
 T.en={
- heroTitle:"How do students use Artificial Intelligence (AI) in their studies?",heroBody:"We're a research team from the {lab} Lab at the Technion. We study how students use tools like ChatGPT and Gemini for homework, exam prep and their studies in general. The conversations you share help us understand what really supports learning.",facts:["Register once, then upload whenever it suits you.","Every accepted conversation raises your chance of winning BuyMe vouchers."],
+ lpTitle1:"Do you use ChatGPT, Gemini or other Artificial Intelligence (AI) tools in your studies?",lpTitle2:"Share a conversation you had with AI and you could win BuyMe vouchers",lpSub:"Every conversation you upload is <b class=\"hl\">one ticket in the draw!</b>",lpCta:"Sign in / Register",lpRet:"Already registered?",lpRetLink:"Sign in here",lpDo:"What you'll do",lpInvite:"Interested in taking part? Click the button below.",lpSteps:["Register once and fill in your profile","Upload a conversation you had with AI","Get a ticket for the draw","Come back whenever you like, upload more conversations and get more tickets"],lpWho:"We're a research team from the {lab} Lab at the Technion, and we research how students use AI in their studies.",
  brandSub:"Research on how Technion students use AI tools for learning",
  signedInAs:"Signed in as {e}",
  signinTitle:"Sign in",

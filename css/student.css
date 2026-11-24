@@ -1,14 +1,32 @@
 /* Student pages: welcome, file section, how-to, withdrawal. */
 
-/* sign-in layout */
-.welcome{display:grid;grid-template-columns:1.1fr 1fr;gap:40px;align-items:start}
-.intro{display:flex;flex-direction:column;gap:16px;padding-top:8px;max-width:30em}
-.intro a.lab{color:var(--fg);font-weight:500;text-decoration:underline;text-decoration-color:var(--accent);text-underline-offset:3px}
-.intro a.lab:hover{color:var(--accent)}
-.facts{list-style:none;margin:8px 0 0;padding:0;display:flex;flex-direction:column;gap:12px}
-.facts li{display:grid;grid-template-columns:28px 1fr;gap:12px;align-items:start}
-.facts .ic{width:28px;height:28px;border-radius:8px;background:var(--accent-soft);color:var(--accent);display:grid;place-items:center;font-family:var(--mono);font-size:13px;font-weight:500}
-@media (max-width:760px){.welcome{grid-template-columns:1fr;gap:24px}h1{font-size:24px}}
+/* landing + sign-in */
+.narrow{max-width:520px;margin:0 auto}
+.landing{display:flex;flex-direction:column;align-items:center;text-align:center;gap:28px;max-width:720px;margin:0 auto;padding-top:12px}
+.landing h1{font-size:34px;line-height:1.4;max-width:22em;display:flex;flex-direction:column;gap:12px}
+.landing h1 .q{font-size:.68em;font-weight:500;color:var(--fg);line-height:1.5}
+.landing h1 .prize{color:var(--accent);font-weight:600;text-wrap:balance}
+.landing h1 .q{text-wrap:balance}
+.lp-hero{display:flex;flex-direction:column;align-items:center;gap:14px}
+.lp-hero .lead{font-size:18px;color:var(--fg)}
+.lp-cta{display:flex;flex-direction:column;align-items:center;gap:8px}
+.lp-cta .btn{font-size:17px;padding:13px 34px}
+.lp-steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,1fr);gap:14px;width:100%;counter-reset:st}
+.lp-steps li{position:relative;counter-increment:st;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px 12px;display:flex;flex-direction:column;align-items:center;gap:10px;font-size:15px;font-weight:500}
+.lp-steps li::before{content:counter(st);position:absolute;top:8px;inset-inline-start:10px;font-size:12px;font-weight:600;color:var(--muted)}
+.lp-steps .ic{width:40px;height:40px;border-radius:12px;background:var(--accent-soft);color:var(--accent);display:grid;place-items:center}
+.lp-steps .ic svg{width:20px;height:20px}
+.lp-who{font-size:16px;max-width:34em}
+.lp-hero .lead b.hl{color:var(--ticket);font-weight:700;text-decoration:underline;text-decoration-thickness:3px;text-underline-offset:7px;text-decoration-skip-ink:none}
+.lp-ret{align-self:stretch;background:var(--accent-soft);border-radius:10px;padding:10px 16px;font-size:14.5px}
+.lp-do{font-size:20px;margin-bottom:-12px}
+.lp-invite{font-size:16px;font-weight:500}
+.landing .contact{font-size:16px;padding:16px 20px;justify-content:center;gap:6px 10px}
+.landing .contact .iconbtn{width:36px;height:36px}
+.landing .contact .iconbtn svg{width:20px;height:20px}
+.lp-who a.lab{color:var(--fg);font-weight:500;text-decoration:underline;text-decoration-color:var(--accent);text-underline-offset:3px}
+.lp-who a.lab:hover{color:var(--accent)}
+@media (max-width:760px){.landing h1{font-size:25px}.landing h1 .q{font-size:.72em}.lp-steps{grid-template-columns:1fr}.lp-steps li::before{inset-inline-start:auto;inset-inline-end:10px}.lp-steps li{flex-direction:row;text-align:start;padding:12px 14px}}
 
 .filesec{border:1.5px solid var(--accent);border-radius:12px;padding:18px;display:flex;flex-direction:column;gap:14px;background:color-mix(in srgb,var(--accent-soft) 45%,var(--surface))}
 .filehead{display:flex;gap:12px;align-items:flex-start}

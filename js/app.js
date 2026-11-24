@@ -15,12 +15,12 @@ function render(){
  seg.innerHTML=Object.entries(LANGS).map(([k,v])=>`<button lang="${k}" data-lang="${k}" aria-pressed="${k===lang}">${v.label}</button>`).join("");
  seg.querySelectorAll("[data-lang]").forEach(b=>b.onclick=()=>setLang(b.dataset.lang));
  $("#whoami").innerHTML=view!=="student"&&R.in?`${esc(R.email)}<button class="btn small hdr-btn" id="ra-out">Sign out</button>`:"";
- const sub=$("#subnav");sub.hidden=view!=="student"||S.step==="signin";
+ const sub=$("#subnav");sub.hidden=view!=="student"||S.step==="signin"||S.step==="landing";
  sub.querySelector(".subnav-in").innerHTML=sub.hidden?"":`<span class="signed">${S.me?esc(t("signedInAs",{e:"\u2068"+S.me.email+"\u2069"})):""}</span>
   <div class="navbtns">${S.me?`<button data-nav="home" ${S.step==="home"?'aria-current="page"':""}>${UP_ICON}<span>${esc(t("uploadTitle"))}</span></button>
    <button data-nav="profile" ${S.step==="profile"?'aria-current="page"':""}>${USER_ICON}<span>${esc(t("editProfile"))}</span></button>`:""}
    <button id="st-out">${OUT_ICON}<span>${esc(t("backToSignin"))}</span></button></div>`;
- if($("#st-out"))$("#st-out").onclick=()=>{S=fresh();pendingFile=null;render();window.scrollTo({top:0})};
+ if($("#st-out"))$("#st-out").onclick=()=>{S=fresh();S.step="signin";pendingFile=null;render();window.scrollTo({top:0})};
  document.querySelectorAll("[data-nav]").forEach(b=>b.onclick=()=>{S.uploadDraft={};pendingFile=null;S.lastResult=null;S.step=b.dataset.nav;render();window.scrollTo({top:0})});
  if(view==="student"){$("#app").innerHTML=renderStudent();bindStudent()}
  else if(R.in){$("#app").innerHTML=renderResearch();bindResearch();$("#ra-out").onclick=()=>{R={email:"",codeSent:false,in:false};setView("student")}}

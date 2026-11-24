@@ -1,12 +1,7 @@
 // Student sign-in: email + 6-digit code.
 
 function signinView(){
- return `<div class="welcome">
- <div class="intro">
-  <h1>${t("heroTitle")}</h1>
-  <p class="muted">${t("heroBody",{lab:`<a class="lab" href="https://roll.net.technion.ac.il/" target="_blank" rel="noopener"><bdi>Learning Analytics and Learning Design (LALD)</bdi></a>`})}</p>
-  <ul class="facts">${T[lang].facts.map((f,i)=>`<li><span class="ic">${FACT_ICONS[i]}</span><span>${esc(f)}</span></li>`).join("")}</ul>
- </div>
+ return `<div class="narrow">
  <div class="panel stack">
   <h2>${t("signinTitle")}</h2>
   <p class="muted">${t("signinIntro")}</p>
