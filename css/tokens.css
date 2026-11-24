@@ -1,0 +1,25 @@
+/* Design tokens: one set for light, one for dark. Deep ink-green band, cool grey-green ground, teal accent, amber for tickets and prototype-only boxes.
+   IBM Plex Sans / Hebrew / Arabic. No monospace for UI text (--mono maps to Plex Sans); --code is only for literal code and file-format samples. */
+
+:root{
+  --bg:#f3f6f5; --surface:#ffffff; --sunk:#eaefed; --fg:#142321; --muted:#5a6a66; --line:#d6dfdc;
+  --accent:#0d6b5f; --accent-strong:#09524a; --accent-soft:#e0efeb;
+  --band:#0f2e2a; --band-fg:#e8f2ef; --band-muted:#9fbdb6; --band-accent:#7fd6c5;
+  --ticket:#9a5a00; --ticket-soft:#fcefd8;
+  --good:#1d7a4a; --good-soft:#e1f2e8; --bad:#b03a2e; --bad-soft:#fbe7e4;
+  --shadow:0 1px 2px rgba(15,46,42,.05),0 6px 20px rgba(15,46,42,.05);
+  --code:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; --body:"IBM Plex Sans", system-ui, -apple-system, sans-serif; --mono:"IBM Plex Sans", system-ui, sans-serif;
+  --body-he:"IBM Plex Sans Hebrew", "IBM Plex Sans", Arial, sans-serif; --body-ar:"IBM Plex Sans Arabic", "IBM Plex Sans", Tahoma, sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0d1312; --surface:#141c1b; --sunk:#1a2422; --fg:#e2ebe8; --muted:#93a39e; --line:#26332f;
+  --accent:#5cc4b1; --accent-strong:#7fd6c5; --accent-soft:#15302b;
+  --band:#0a1f1c; --band-fg:#e2ebe8; --band-muted:#8fb0a9; --band-accent:#7fd6c5;
+  --ticket:#e8ac4f; --ticket-soft:#30250f;
+  --good:#5cc490; --good-soft:#132e20; --bad:#f08a80; --bad-soft:#381c1a; --shadow:none; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0d1312; --surface:#141c1b; --sunk:#1a2422; --fg:#e2ebe8; --muted:#93a39e; --line:#26332f;
+  --accent:#5cc4b1; --accent-strong:#7fd6c5; --accent-soft:#15302b;
+  --band:#0a1f1c; --band-fg:#e2ebe8; --band-muted:#8fb0a9; --band-accent:#7fd6c5;
+  --ticket:#e8ac4f; --ticket-soft:#30250f;
+  --good:#5cc490; --good-soft:#132e20; --bad:#f08a80; --bad-soft:#381c1a; --shadow:none; color-scheme:dark}

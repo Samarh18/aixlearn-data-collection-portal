@@ -1,0 +1,35 @@
+/* Page chrome: prototype strip, header band, language switch, student sub-header. */
+
+/* prototype strip */
+.protobar{background:var(--sunk);border-bottom:1px solid var(--line);font-size:12px;color:var(--muted)}
+.protobar .wrap{padding-block:6px}
+.protobar b{font-weight:600;color:var(--fg);letter-spacing:.06em;text-transform:uppercase;font-size:11px;margin-inline-end:6px}
+
+/* header band */
+header.site{background-color:var(--band);background-image:radial-gradient(rgba(255,255,255,.07) 1px,transparent 1.2px);background-size:14px 14px;color:var(--band-fg)}
+header.site .wrap{display:flex;align-items:center;justify-content:space-between;gap:14px 20px;flex-wrap:wrap;padding-block:22px}
+.brand{display:flex;align-items:center;gap:14px;min-width:0}
+.wordmark{font-family:"IBM Plex Sans",system-ui,sans-serif;font-weight:600;font-size:24px;letter-spacing:-.02em;line-height:1.1}
+.wordmark em{font-style:normal;color:var(--band-accent)}
+.brand small{display:block;font-size:13px;color:var(--band-muted);margin-top:4px;text-align:left}
+.hdr-side{display:flex;flex-direction:column;align-items:flex-end;gap:8px;font-size:13px;color:var(--band-muted)}
+.hdr-side .linkbtn{color:var(--band-fg)}
+#whoami{display:flex;flex-wrap:wrap;align-items:center;justify-content:flex-end;gap:6px 12px}
+.hdr-btn{background:transparent;border-color:rgba(255,255,255,.35);color:var(--band-fg)}
+.hdr-btn:hover{background:rgba(255,255,255,.12);border-color:var(--band-fg)}
+.seg[hidden]{display:none}
+.seg{display:inline-flex;border:1px solid rgba(255,255,255,.22);border-radius:999px;padding:3px;gap:2px}
+.seg button{border:0;background:none;padding:5px 12px;border-radius:999px;font:inherit;font-size:13px;color:var(--band-muted);cursor:pointer}
+.seg button:hover{color:var(--band-fg)}
+.seg button[aria-pressed="true"]{background:var(--band-fg);color:var(--band);font-weight:500}
+
+.subnav{background:var(--surface);border-bottom:1px solid var(--line)}
+.subnav-in{display:flex;justify-content:space-between;align-items:center;gap:8px 16px;flex-wrap:wrap;padding-block:10px}
+.subnav .signed{font-size:13px;color:var(--muted)}
+.navbtns{display:flex;gap:6px;flex-wrap:wrap}
+.navbtns button{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:var(--surface);color:var(--fg);font:inherit;font-size:13.5px;padding:7px 14px;border-radius:999px;cursor:pointer}
+.navbtns button svg{color:var(--muted)}
+.navbtns button:hover{background:var(--sunk)}
+.navbtns button[aria-current=page]{background:var(--accent-soft);border-color:var(--accent);color:var(--accent);font-weight:600}
+.navbtns button[aria-current=page] svg{color:var(--accent)}
+

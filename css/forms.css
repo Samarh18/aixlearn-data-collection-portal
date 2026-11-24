@@ -1,0 +1,31 @@
+/* Form fields, validation states (invalid + shake) and checkboxes. */
+
+/* forms */
+label.f{display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:500;min-width:0}
+label.f .ctl{display:flex;flex-direction:column;min-width:0}
+label.f .hint:empty{display:none}
+.grid2{row-gap:20px}
+.grid2>label.f{display:grid;grid-row:span 3;grid-template-rows:subgrid;row-gap:6px;align-content:start}
+.grid2>label.f .lt{align-self:end}
+.grid2>label.f .hint:empty{display:block}
+.invalid{border-color:var(--bad)!important;box-shadow:0 0 0 3px var(--bad-soft)!important}
+.check.invalid{background:var(--bad-soft)}
+label.f:has(.invalid) .lt{color:var(--bad)}
+@keyframes shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-6px)}40%{transform:translateX(5px)}60%{transform:translateX(-4px)}80%{transform:translateX(2px)}}
+@media (prefers-reduced-motion:no-preference){.shake{animation:shake .4s ease}}
+label.f .hint{font-weight:400;color:var(--muted)}
+input[type=text],input[type=email],input[type=number],input[type=date],select,textarea{font:inherit;font-size:15px;color:var(--fg);background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:10px 12px;width:100%;transition:border-color .15s}
+input:hover,select:hover{border-color:var(--muted)}
+select{appearance:none;-webkit-appearance:none;cursor:pointer;background-color:var(--surface);background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%23789a92' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-inline-end:40px;text-overflow:ellipsis}
+#shell[dir=rtl] select{background-position:left 14px center}
+select.empty{color:var(--muted)}
+select option{color:var(--fg);background:var(--surface)}
+input[type=text]:focus,input[type=email]:focus,input[type=number]:focus,select:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft);outline:none}
+.other-input{margin-top:8px}
+input[dir=ltr]{text-align:left}
+input[readonly]{background:var(--sunk);color:var(--muted)}
+#si-code,#ra-code{font-variant-numeric:tabular-nums;font-size:20px;letter-spacing:.35em;text-align:center}
+input:focus-visible,select:focus-visible,button:focus-visible,textarea:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.check{display:flex;gap:10px;align-items:flex-start;font-size:14px;padding:10px 12px;border:1px solid var(--line);border-radius:8px}
+.check:has(input:checked){border-color:var(--accent);background:var(--accent-soft)}
+.check input{margin-top:5px;flex:none;accent-color:var(--accent)}

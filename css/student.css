@@ -1,0 +1,46 @@
+/* Student pages: welcome, file section, how-to, withdrawal. */
+
+/* sign-in layout */
+.welcome{display:grid;grid-template-columns:1.1fr 1fr;gap:40px;align-items:start}
+.intro{display:flex;flex-direction:column;gap:16px;padding-top:8px;max-width:30em}
+.intro a.lab{color:var(--fg);font-weight:500;text-decoration:underline;text-decoration-color:var(--accent);text-underline-offset:3px}
+.intro a.lab:hover{color:var(--accent)}
+.facts{list-style:none;margin:8px 0 0;padding:0;display:flex;flex-direction:column;gap:12px}
+.facts li{display:grid;grid-template-columns:28px 1fr;gap:12px;align-items:start}
+.facts .ic{width:28px;height:28px;border-radius:8px;background:var(--accent-soft);color:var(--accent);display:grid;place-items:center;font-family:var(--mono);font-size:13px;font-weight:500}
+@media (max-width:760px){.welcome{grid-template-columns:1fr;gap:24px}h1{font-size:24px}}
+
+.filesec{border:1.5px solid var(--accent);border-radius:12px;padding:18px;display:flex;flex-direction:column;gap:14px;background:color-mix(in srgb,var(--accent-soft) 45%,var(--surface))}
+.filehead{display:flex;gap:12px;align-items:flex-start}
+.filehead p{font-size:13.5px;margin-top:2px}
+.fileicon{flex:none;width:36px;height:36px;border-radius:10px;background:var(--accent);color:var(--surface);display:grid;place-items:center}
+.reqs{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px;font-size:14px}
+.reqs li{display:flex;gap:8px;align-items:flex-start}
+.reqs svg{flex:none;margin-top:4px;color:var(--good)}
+.filesec .filepick,.filesec .howto{background:var(--surface)}
+.filesec .howto summary{color:var(--accent)}
+.examples{margin:0 12px 12px}
+.examples h4{margin-bottom:8px}
+.exgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:8px}
+.ex{margin:0;border:1px solid var(--line);border-radius:8px;background:var(--surface);overflow:hidden;min-width:0}
+.ex figcaption{display:flex;gap:6px;align-items:center;font-size:12.5px;font-weight:500;padding:6px 10px;border-bottom:1px solid var(--line);color:var(--good)}
+.ex pre{margin:0;padding:10px;font:12px/1.55 var(--code);white-space:pre-wrap;unicode-bidi:plaintext;color:var(--fg)}
+.notacc{font-size:12.5px;margin-top:10px}
+.withdraw .wdpart{border-top:1px solid var(--line);padding-top:14px;display:flex;flex-direction:column;gap:10px}
+.rmlist{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+.rmlist li{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:8px 0;border-bottom:1px solid var(--line);font-size:14px}
+.rmlist li:last-child{border-bottom:0}
+.howto{border:1px solid var(--line);border-radius:8px;background:var(--sunk);font-size:13.5px}
+.howto summary{cursor:pointer;padding:10px 12px;font-weight:500;color:var(--accent)}
+.howto[open] summary{border-bottom:1px solid var(--line)}
+.howto ol{margin:12px 0;padding-inline-start:30px;padding-inline-end:12px;display:flex;flex-direction:column;gap:6px}
+.howto a{display:inline-block;margin:0 12px 12px;color:var(--accent)}
+.promptbox{margin:0 12px 12px;border:1px solid var(--line);border-radius:8px;background:var(--surface);overflow:hidden}
+.promptbar{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:6px 6px 6px 12px;border-bottom:1px solid var(--line);font-size:12.5px;color:var(--muted)}
+#shell[dir=rtl] .promptbar{padding:6px 12px 6px 6px}
+.promptbar .btn{display:inline-flex;align-items:center;gap:6px}
+.promptbox pre{margin:0;padding:12px;max-height:180px;overflow:auto;font:12.5px/1.5 var(--code);white-space:pre-wrap;text-align:left}
+
+.filepick{display:flex;gap:10px;align-items:center;flex-wrap:wrap;font-weight:400;padding:12px;border:1px dashed var(--line);border-radius:8px}
+.filepick input{position:absolute;width:1px;height:1px;opacity:0}
+.filepick:focus-within .btn{outline:2px solid var(--accent);outline-offset:2px}

@@ -1,0 +1,66 @@
+/* Components used on both the student and researcher sides: buttons, notes, chips, tickets, tables, toast, modal. */
+
+.btn{font:inherit;font-weight:500;border-radius:8px;padding:10px 18px;cursor:pointer;border:1px solid var(--accent);background:var(--accent);color:var(--surface)}
+.btn:hover{background:var(--accent-strong);border-color:var(--accent-strong)}
+.btn.ghost{background:transparent;color:var(--accent)}
+.btn.ghost:hover{background:var(--accent-soft)}
+.btn.small{padding:5px 12px;font-size:13px}
+.linkbtn{background:none;border:0;color:var(--accent);font:inherit;cursor:pointer;padding:0;text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px}
+.linkbtn:hover{text-decoration-thickness:2px}
+
+.btn.small svg{vertical-align:-3px}
+.btn.ghost.small{display:inline-flex;align-items:center;gap:6px}
+
+.btn.danger{background:var(--bad);border-color:var(--bad);color:var(--surface)}
+.btn.danger:hover{filter:brightness(.92)}
+.btn.danger-ghost{background:transparent;border-color:var(--bad);color:var(--bad)}
+.btn.danger-ghost:hover{background:var(--bad-soft)}
+
+.steps{display:flex;gap:8px;flex-wrap:wrap;font-size:13px;color:var(--muted)}
+.steps span{padding:4px 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface)}
+.steps span.on{border-color:var(--accent);color:var(--accent);font-weight:600}
+.steps span.done{color:var(--good);border-color:transparent;background:var(--good-soft)}
+.note{background:var(--sunk);border-radius:10px;padding:12px 14px;font-size:13px}
+.contact{border:1px dashed var(--line);background:transparent;display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px}
+.iconbtn{display:inline-grid;place-items:center;width:30px;height:30px;border:0;border-radius:6px;background:none;color:var(--accent);cursor:pointer}
+.iconbtn:hover{background:var(--accent-soft)}
+.proto{border:1px dashed var(--ticket);background:var(--ticket-soft);border-radius:10px;padding:12px;display:flex;flex-direction:column;gap:10px}
+.proto .lbl{font-size:12px;font-weight:600;color:var(--ticket)}
+.proto .btns{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px}
+.proto .btn{background:var(--surface)}
+.consent{background:var(--sunk);border-radius:10px;padding:14px 16px;font-size:14px;max-height:240px;overflow:auto}
+.consent ul{margin:8px 0 0;padding-inline-start:20px;padding-left:revert}
+.result{border-radius:10px;padding:14px 16px;font-size:14px}
+.result.ok{background:var(--good-soft);color:var(--good)}
+.result.err{background:var(--bad-soft);color:var(--bad)}
+.result b{display:block;margin-bottom:2px}
+
+/* lottery ticket: notched sides */
+.ticket{display:inline-flex;align-items:center;gap:6px;background:var(--ticket-soft);color:var(--ticket);font-weight:600;padding:6px 16px;font-size:13px;font-variant-numeric:tabular-nums;border-radius:6px;
+  -webkit-mask:radial-gradient(circle 6px at 0 50%,#0000 97%,#000) left/51% 100% no-repeat,radial-gradient(circle 6px at 100% 50%,#0000 97%,#000) right/51% 100% no-repeat;
+  mask:radial-gradient(circle 6px at 0 50%,#0000 97%,#000) left/51% 100% no-repeat,radial-gradient(circle 6px at 100% 50%,#0000 97%,#000) right/51% 100% no-repeat}
+.chip{display:inline-block;border-radius:999px;padding:2px 10px;font-size:12px;font-weight:500;white-space:nowrap}
+.chip.ok{background:var(--good-soft);color:var(--good)}
+.chip.err{background:var(--bad-soft);color:var(--bad)}
+.chip.neutral{background:var(--sunk);color:var(--muted)}
+.chip.acc{background:var(--accent-soft);color:var(--accent)}
+
+/* tables */
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:13.5px}
+th,td{text-align:start;padding:10px 14px;border-bottom:1px solid var(--line);white-space:nowrap;vertical-align:middle}
+th{font-size:11.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:500;background:var(--sunk)}
+#shell:lang(he) th,#shell:lang(ar) th{letter-spacing:0;font-size:12.5px}
+tbody tr:hover td{background:color-mix(in srgb,var(--accent-soft) 45%,transparent)}
+tr:last-child td{border-bottom:0}
+td.num,th.num{text-align:end;font-variant-numeric:tabular-nums}
+td.wrapcell{white-space:normal;min-width:150px}
+.ticket.big{font-size:16px;padding:10px 22px;align-self:flex-start}
+.mono{font-family:inherit;font-size:13px;font-variant-numeric:tabular-nums}
+
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(20px + env(safe-area-inset-bottom,0px));background:var(--band);color:var(--band-fg);padding:10px 16px;border-radius:10px;font-size:14px;z-index:20;max-width:calc(100% - 32px);box-shadow:0 8px 24px rgba(0,0,0,.18)}
+
+.sectionhead{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+
+.modal{position:fixed;inset:0;z-index:30;display:grid;place-items:center;padding:16px;background:rgba(8,20,18,.55)}
+.modal-box{background:var(--surface);border-radius:14px;padding:24px;max-width:440px;width:100%;box-shadow:0 20px 50px rgba(0,0,0,.25)}
