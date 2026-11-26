@@ -54,3 +54,12 @@ input:focus-visible,select:focus-visible,button:focus-visible,textarea:focus-vis
 
 /* Empty dir="auto" boxes default to left-to-right; keep their placeholder on the right in Hebrew and Arabic. */
 #shell[dir=rtl] input[dir=auto]:placeholder-shown{direction:rtl;text-align:right}
+
+/* partner emails: one or more rows */
+.partners{display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:500;min-width:0}
+#up-partners{display:flex;flex-direction:column;gap:8px}
+.prow{display:flex;align-items:center;gap:6px}
+.prow input{flex:1;min-width:0}
+.partners .hint{font-weight:400;color:var(--muted)}
+.partners .linkbtn{align-self:flex-start;font-size:13.5px;font-weight:500}
+.partners:has(.invalid) .lt{color:var(--bad)}

@@ -10,10 +10,11 @@ let questions=[
  {id:"q_moed",scope:"Each upload",retired:false,text:{he:"לאיזה מועד שייך הקובץ?",ar:"لأي موعد امتحان يعود هذا الملف؟",en:"Which exam period is this file for?"}},
  {id:"q_reason",scope:"Each upload",retired:false,text:{he:"אם זה מועד ב׳, למה ניגשתם אליו?",ar:"إذا كان موعد ب، لماذا تقدّمت له؟",en:"If Moed B, why did you take it?"}},
  {id:"q_purpose",scope:"Each upload",retired:false,text:{he:"לאיזו מטרה השתמשתם בשיחה?",ar:"لأي غرض استخدمت المحادثة؟",en:"What did you use the conversation for?"}},
+ {id:"q_partner",scope:"Each upload",retired:false,text:{he:"האם הגשתם את המטלה הזו יחד עם סטודנטים נוספים?",ar:"هل سلّمت هذه المهمة مع طلاب آخرين؟",en:"Did you submit this assignment together with other students?"}},
 ];
-const CORE_TYPES={q_year:"choice",q_faculty:"choice",q_gpa:"number",q_prev:"choice",q_course:"course",q_tool:"choice",q_moed:"choice",q_purpose:"choice",q_reason:"choice"};
-const CORE_LISTS={q_year:YEARS,q_faculty:FACULTIES,q_prev:["Yes","No"],q_tool:TOOLS,q_moed:["Moed A","Moed B"],q_purpose:PURPOSES,q_reason:REASONS};
-const LOCKED={q_purpose:["Exam prep","Assignment"],q_moed:["Moed A","Moed B"],q_reason:["Other"],q_year:["Other"],q_faculty:["Other"],q_tool:["Other"]};
+const CORE_TYPES={q_year:"choice",q_faculty:"choice",q_gpa:"number",q_prev:"choice",q_course:"course",q_tool:"choice",q_moed:"choice",q_purpose:"choice",q_partner:"choice",q_reason:"choice"};
+const CORE_LISTS={q_year:YEARS,q_faculty:FACULTIES,q_prev:["Yes","No"],q_tool:TOOLS,q_moed:["Moed A","Moed B"],q_purpose:PURPOSES,q_partner:["Yes","No"],q_reason:REASONS};
+const LOCKED={q_partner:["Yes","No"],q_purpose:["Exam prep","Assignment"],q_moed:["Moed A","Moed B"],q_reason:["Other"],q_year:["Other"],q_faculty:["Other"],q_tool:["Other"]};
 let qSeq=0,optSeq=0;
 questions.forEach(x=>{x.core=true;x.required=true;x.type=CORE_TYPES[x.id];x.opts=(CORE_LISTS[x.id]||[]).map(v=>({v,he:(LBL.he[v]||v),ar:(LBL.ar[v]||v),en:v,locked:(LOCKED[x.id]||[]).includes(v)}))});
 const qById=id=>questions.find(x=>x.id===id);

@@ -15,13 +15,24 @@ const fileSection=()=>`<section class="filesec">
  </details>
  <div class="proto"><span class="lbl">${t("demoHint")}</span><div class="btns"><button class="btn ghost small" id="up-sample-ok">${t("sampleOk")}</button><button class="btn ghost small" id="up-sample-bad">${t("sampleBad")}</button><button class="btn ghost small" id="up-sample-pdf" ${S.uploadDraft.purpose==="Assignment"?"":"hidden"}>${t("sampleOkPdf")}</button></div></div>
 </section>`;
+const partnerRow=(v="")=>`<div class="prow"><input type="email" class="partner-email" dir="ltr" maxlength="100" autocomplete="off" placeholder="name@campus.technion.ac.il" aria-label="${esc(t("partnerEmail"))}" value="${esc(v)}"><button type="button" class="iconbtn prm" aria-label="${esc(t("partnerRemove"))}" title="${esc(t("partnerRemove"))}">${X_ICON}</button></div>`;
+const partnerFields=(show,list)=>`<div class="partners" id="up-partner-email-wrap" ${show?"":"hidden"}><span class="lt">${esc(t("partnerEmail"))}</span><div id="up-partners">${(list&&list.length?list:[""]).map(partnerRow).join("")}</div><span class="hint">${esc(t("emailHint"))}</span><button type="button" class="linkbtn" id="up-partner-add">+ ${esc(t("partnerAdd"))}</button></div>`;
+const partnerValues=()=>[...document.querySelectorAll(".partner-email")].map(i=>i.value.trim().toLowerCase());
+function bindPartners(){
+ const box=$("#up-partners"),add=$("#up-partner-add");
+ // one row has nothing to remove; hide "add" at the limit
+ const sync=()=>{box.querySelectorAll(".prm").forEach(b=>b.hidden=box.children.length===1);add.hidden=box.children.length>=MAX_PARTNERS};
+ add.onclick=()=>{box.insertAdjacentHTML("beforeend",partnerRow());sync();box.lastElementChild.querySelector("input").focus()};
+ box.onclick=e=>{const b=e.target.closest(".prm");if(b){b.parentElement.remove();sync();box.querySelector("input").focus()}};
+ sync();
+}
 const pdfSection=show=>`<section class="pdfsec" id="up-pdf-wrap" ${show?"":"hidden"}>
  <div class="filehead"><span class="fileicon">${DOC_ICON}</span><div><h3>${t("pdfLabel")} <span class="muted">${t("opt")}</span></h3><p>${t("pdfIntro")}</p></div></div>
  <span class="ticket big">${TICKET_ICON}<span>${esc(t("pdfBadge"))}</span></span>
  <label class="filepick"><input type="file" id="up-pdf"><span class="btn small" aria-hidden="true">${t("chooseFile")}</span><span id="up-pdfname" class="muted">${esc(pendingPdf?pendingPdf.name:t("noFileChosen"))}</span></label>
  <div id="up-pdf-err" class="result err" role="alert" hidden></div>
 </section>`;
-function syncCond(){const pu=$("#up-purpose");if(!pu)return;const ex=pu.value==="Exam prep";$("#up-pdf-wrap").hidden=$("#up-sample-pdf").hidden=pu.value!=="Assignment";$("#up-moed-wrap").hidden=!ex;$("#up-reason-wrap").hidden=!(ex&&$("#up-moed").value==="Moed B")}
+function syncCond(){const pu=$("#up-purpose");if(!pu)return;const ex=pu.value==="Exam prep";$("#up-pdf-wrap").hidden=$("#up-sample-pdf").hidden=pu.value!=="Assignment";const as=pu.value==="Assignment";$("#up-partner-wrap").hidden=!as;$("#up-partner-email-wrap").hidden=!(as&&$("#up-partner").value==="Yes");$("#up-moed-wrap").hidden=!ex;$("#up-reason-wrap").hidden=!(ex&&$("#up-moed").value==="Moed B")}
 function homeView(){
  const mine=submissions.filter(s=>s.pid===S.me.pid);
  const n=ticketTotal(S.me.pid);
@@ -37,6 +48,8 @@ function homeView(){
     <label class="f"><span class="lt">${esc(q("q_purpose"))}</span><span class="ctl">${selO("up-purpose","q_purpose",d.purpose,d.purposeOther)}</span><span class="hint"></span></label>
     <label class="f" id="up-moed-wrap" ${exam?"":"hidden"}><span class="lt">${esc(q("q_moed"))}</span><span class="ctl"><select id="up-moed">${optsQ("q_moed",d.moed)}</select></span><span class="hint"></span></label>
     <label class="f" id="up-reason-wrap" ${moedB?"":"hidden"}><span class="lt">${esc(q("q_reason"))}</span><span class="ctl">${selO("up-reason","q_reason",d.reason,d.reasonOther)}</span><span class="hint"></span></label>
+    <label class="f" id="up-partner-wrap" ${d.purpose==="Assignment"?"":"hidden"}><span class="lt">${esc(q("q_partner"))}</span><span class="ctl"><select id="up-partner">${optsQ("q_partner",d.partner)}</select></span><span class="hint">${esc(t("partnerHint"))}</span></label>
+    ${partnerFields(d.purpose==="Assignment"&&d.partner==="Yes",d.partnerEmails)}
     ${customFields("Each upload",{})}
     ${pdfSection(d.purpose==="Assignment")}
     ${fileSection()}
@@ -72,9 +85,10 @@ function homeView(){
 }
 function bindHome(){
  const save=()=>{const pu=$("#up-purpose").value,ex=pu==="Exam prep",mo=ex?$("#up-moed").value:"";
-  const co=$("#up-course").dataset.value;S.uploadDraft={course:co,courseOther:co===OTHER?$("#up-course-other").value.trim():"",tool:$("#up-tool").value,toolOther:otherVal("up-tool"),purpose:pu,purposeOther:otherVal("up-purpose"),moed:mo,reason:mo==="Moed B"?$("#up-reason").value:"",reasonOther:mo==="Moed B"?otherVal("up-reason"):""}};
- bindCoursePicker();
- $("#up-purpose").addEventListener("change",()=>{if($("#up-purpose").value!=="Assignment"){pendingPdf=null;$("#up-pdfname").textContent=t("noFileChosen");$("#up-pdf-err").hidden=true}syncCond()});$("#up-moed").addEventListener("change",syncCond);
+  const co=$("#up-course").dataset.value;const pa=pu==="Assignment"?$("#up-partner").value:"";
+  S.uploadDraft={partner:pa,partnerEmails:pa==="Yes"?partnerValues():[],course:co,courseOther:co===OTHER?$("#up-course-other").value.trim():"",tool:$("#up-tool").value,toolOther:otherVal("up-tool"),purpose:pu,purposeOther:otherVal("up-purpose"),moed:mo,reason:mo==="Moed B"?$("#up-reason").value:"",reasonOther:mo==="Moed B"?otherVal("up-reason"):""}};
+ bindCoursePicker();bindPartners();
+ $("#up-purpose").addEventListener("change",()=>{if($("#up-purpose").value!=="Assignment"){pendingPdf=null;$("#up-pdfname").textContent=t("noFileChosen");$("#up-pdf-err").hidden=true}syncCond()});$("#up-moed").addEventListener("change",syncCond);$("#up-partner").addEventListener("change",syncCond);
  $("#up-file").onchange=e=>{const f=e.target.files[0];if(!f){pendingFile=null;return}const fr=new FileReader();fr.onload=()=>{pendingFile={name:f.name,text:fr.result};$("#up-fname").textContent=f.name};fr.readAsText(f,"utf-8")};
  const setPdf=(name,size,head)=>{const r=validatePdf(name,head),er=$("#up-pdf-err");$("#up-pdf-wrap .filepick").classList.remove("invalid");
   if(!r.ok){pendingPdf=null;$("#up-pdfname").textContent=t("noFileChosen");er.textContent=t(r.key,{f:"\u2068"+name+"\u2069"});er.hidden=false;return}
@@ -88,6 +102,9 @@ function bindHome(){
   need(d.course,$("#up-course"),t("mCourse"));need(d.course!==OTHER||d.courseOther,$("#up-course-other"),t("mOther"));
   need(d.tool,$("#up-tool"),t("mTool"));need(!otherMissing("up-tool"),$("#up-tool-other"),t("mOther"));
   need(d.purpose,$("#up-purpose"),t("mPurpose"));need(!otherMissing("up-purpose"),$("#up-purpose-other"),t("mOther"));
+  if(d.purpose==="Assignment"){need(d.partner,$("#up-partner"),t("mPartner"));
+   if(d.partner==="Yes"){const me=S.me.email.toLowerCase();document.querySelectorAll(".partner-email").forEach((el,i)=>{const v=d.partnerEmails[i];
+    need(v!==me,el,t("mPartnerSelf"));if(v!==me)need(isTechnion(v),el,t("mPartnerEmail"));need(!v||d.partnerEmails.indexOf(v)===i,el,t("mPartnerDup"))})}}
   if(ex)need(d.moed,$("#up-moed"),t("mMoed"));
   if(d.moed==="Moed B"){need(d.reason,$("#up-reason"),t("mReason"));need(!otherMissing("up-reason"),$("#up-reason-other"),t("mOther"))}
   const cust=readCustom("Each upload",need);
@@ -96,7 +113,7 @@ function bindHome(){
   e.hidden=true;
   const v=validate(pendingFile.name,pendingFile.text);const num=d.course===OTHER?"other":d.course;
   if(!v.ok){S.lastResult={ok:false,key:v.key};render();return}
-  const s={sid:"S"+String(submissions.length+1).padStart(4,"0"),pid:S.me.pid,course:num,courseText:d.course===OTHER?d.courseOther:"",tool:d.tool,toolOther:d.toolOther,moed:d.moed,reason:d.reason,reasonOther:d.reasonOther,purpose:d.purpose,purposeOther:d.purposeOther,date:"2027-02-14",ok:true,error:"",turns:v.turns,text:pendingFile.text,round:"R1",custom:cust};s.file=fname(s);if(d.purpose==="Assignment"&&pendingPdf)s.pdf={name:pdfName(s),size:pendingPdf.size};
+  const s={sid:"S"+String(submissions.length+1).padStart(4,"0"),pid:S.me.pid,course:num,courseText:d.course===OTHER?d.courseOther:"",tool:d.tool,toolOther:d.toolOther,moed:d.moed,reason:d.reason,reasonOther:d.reasonOther,purpose:d.purpose,purposeOther:d.purposeOther,partner:d.partner,partnerEmails:d.partnerEmails,date:"2027-02-14",ok:true,error:"",turns:v.turns,text:pendingFile.text,round:"R1",custom:cust};s.file=fname(s);if(d.purpose==="Assignment"&&pendingPdf)s.pdf={name:pdfName(s),size:pendingPdf.size};
   submissions.push(s);S.lastResult={ok:true,turns:v.turns,tickets:ticketsFor(s),pdf:!!s.pdf};S.uploadDraft={};pendingFile=null;pendingPdf=null;render()};
  const md=$("#wd-modal");let back=null;
  const closeMd=()=>{md.hidden=true;if(back)back.focus()};
@@ -105,5 +122,5 @@ function bindHome(){
  md.onclick=e=>{if(e.target===md)closeMd()};
  md.onkeydown=e=>{if(e.key==="Escape")closeMd()};
  document.querySelectorAll("[data-rm]").forEach(b=>b.onclick=()=>openMd(b,t("rmQ"),t("rmQBody"),t("rmYes"),()=>{submissions=submissions.filter(s=>s.sid!==b.dataset.rm);S.lastResult=null;toast(t("deleted"));render()}));
- $("#me-withdraw").onclick=e=>openMd(e.currentTarget,t("wdQ"),t("wdQBody"),t("wdYes"),()=>{S.me.withdrawn=true;submissions=submissions.filter(s=>s.pid!==S.me.pid);S=fresh();toast(t("withdrawn"));render();window.scrollTo({top:0})});
+ $("#me-withdraw").onclick=e=>openMd(e.currentTarget,t("wdQ"),t("wdQBody"),t("wdYes"),()=>{S.me.withdrawn=true;submissions=submissions.filter(s=>s.pid!==S.me.pid);submissions.forEach(s=>{if(s.partnerEmails)s.partnerEmails=s.partnerEmails.filter(e=>e!==S.me.email.toLowerCase())});S=fresh();toast(t("withdrawn"));render();window.scrollTo({top:0})});
 }

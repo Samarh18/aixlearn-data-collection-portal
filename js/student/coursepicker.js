@@ -3,7 +3,7 @@
 
 const COURSE_MAX=50;
 const courseText=v=>v===OTHER?t("courseOtherOpt"):v?`${v} · ${cName(v)}`:"";
-const courseSelect=(sel,oth)=>`<div class="combo"><input type="text" id="up-course" role="combobox" aria-expanded="false" aria-controls="up-course-list" aria-autocomplete="list" autocomplete="off" dir="auto" maxlength="120" placeholder="${esc(t("courseSearch"))}" data-value="${esc(sel||"")}" value="${esc(courseText(sel))}"><ul id="up-course-list" role="listbox" hidden></ul></div><input type="text" id="up-course-other" class="other-input" dir="auto" maxlength="40" placeholder="${esc(t("pleaseSpecify"))}" value="${esc(oth||"")}" ${sel===OTHER?"":"hidden"}>`;
+const courseSelect=(sel,oth)=>`<div class="combo"><input type="text" id="up-course" role="combobox" aria-expanded="false" aria-controls="up-course-list" aria-autocomplete="list" autocomplete="off" maxlength="120" placeholder="${esc(t("courseSearch"))}" data-value="${esc(sel||"")}" value="${esc(courseText(sel))}"><ul id="up-course-list" role="listbox" hidden></ul></div><input type="text" id="up-course-other" class="other-input" dir="auto" maxlength="40" placeholder="${esc(t("pleaseSpecify"))}" value="${esc(oth||"")}" ${sel===OTHER?"":"hidden"}>`;
 function bindCoursePicker(){
  const inp=$("#up-course"),list=$("#up-course-list"),other=$("#up-course-other");let active=-1;
  const items=()=>[...list.querySelectorAll("[data-v]")];
