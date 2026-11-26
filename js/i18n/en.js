@@ -17,7 +17,7 @@ T.en={
  first:"First name",last:"Last name",idnum:"ID number",backup:"Backup email",backupHint:"Optional. In case your Technion address stops working after the semester.",
  consent:"Consent",consentIntro:"You'll upload conversations you had with AI tools while studying, and answer a few short questions about each one.",
  consentItems:["Identifying details are removed from files before analysis.","Course staff never see your materials.","We do not report copying, academic misconduct or inappropriate behavior.","Data is used for academic research only and reported anonymously.","Files are stored on Technion-managed infrastructure that only the research team can access.","You can withdraw at any time from the \"My submissions\" page."],
- cPart:"<b>I agree to take part</b> and upload the conversations described above.",cGrades:"<b>I agree that researchers may collect my grades</b> for this research, processed anonymously.",cRecontact:"You may contact me about future studies and prize draws.",
+ cPart:"<b>I agree to take part</b> and upload the conversations described above.",cGrades:"<b>I agree that researchers may collect my grades</b> for this research, processed anonymously.",cRecontact:"You may contact me about future studies and BuyMe voucher draws.",
  req:"(Required)",opt:"(Optional)",
  background:"Background",choose:"Choose…",doubleMajor:"Double major: pick one faculty.",saveContinue:"Save and continue",
  stillNeeded:"Still needed: {x}.",mId:"a 9-digit ID number",mConsent:"both required consent boxes",mYear:"year",mFaculty:"faculty",mCourse:"course",mTool:"AI tool",mMoed:"exam period",mReason:"Moed B reason",mFile:"a file",
