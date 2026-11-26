@@ -5,10 +5,10 @@ function signinView(){
  <div class="panel stack">
   <h2>${t("signinTitle")}</h2>
   <p class="muted">${t("signinIntro")}</p>
-  <label class="f"><span class="lt">${t("emailLabel")}</span><span class="ctl"><input type="email" id="si-email" dir="ltr" value="${esc(S.email)}" placeholder="name@campus.technion.ac.il" autocomplete="email" ${S.codeSent?"readonly":""}></span><span class="hint">${t("emailHint")}</span></label>
+  <label class="f"><span class="lt">${t("emailLabel")}${STAR}</span><span class="ctl"><input type="email" id="si-email" dir="ltr" value="${esc(S.email)}" placeholder="name@campus.technion.ac.il" autocomplete="email" ${S.codeSent?"readonly":""}></span><span class="hint">${t("emailHint")}</span></label>
   ${S.codeSent?`<p>${esc(t("codeSentTo",{e:"⁨"+S.email+"⁩"}))}</p>
   <div class="note">${esc(t("protoCode",{c:DEMO_CODE}))}</div>
-  <label class="f"><span class="lt">${t("codeLabel")}</span><input type="text" id="si-code" dir="ltr" inputmode="numeric" maxlength="6" autocomplete="one-time-code" placeholder="••••••"></label>
+  <label class="f"><span class="lt">${t("codeLabel")}${STAR}</span><input type="text" id="si-code" dir="ltr" inputmode="numeric" maxlength="6" autocomplete="one-time-code" placeholder="••••••"></label>
   <div class="row"><button class="btn" id="si-verify">${t("verify")}</button><button class="linkbtn" id="si-resend">${t("resend")}</button><button class="linkbtn" id="si-back">${t("diffEmail")}</button></div>`
   :`<div class="row"><button class="btn" id="si-send">${t("sendCode")}</button></div>`}
   <div id="si-err" class="result err" hidden></div>

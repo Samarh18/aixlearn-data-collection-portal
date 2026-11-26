@@ -10,26 +10,26 @@ function registerView(){
    <h2>${t("aboutYou")}</h2>
    <p class="muted">${t("aboutIntro")}</p>
    <div class="grid2">
-    <label class="f"><span class="lt">${t("first")}</span><span class="ctl"><input type="text" id="rg-first" dir="auto" maxlength="60" value="${v("first")}"></span><span class="hint"></span></label>
-    <label class="f"><span class="lt">${t("last")}</span><span class="ctl"><input type="text" id="rg-last" dir="auto" maxlength="60" value="${v("last")}"></span><span class="hint"></span></label>
-    <label class="f"><span class="lt">${t("idnum")}</span><span class="ctl"><input type="text" id="rg-id" dir="ltr" inputmode="numeric" maxlength="9" value="${v("idnum")}"></span><span class="hint"></span></label>
+    <label class="f"><span class="lt">${t("first")}${STAR}</span><span class="ctl"><input type="text" id="rg-first" dir="auto" maxlength="60" value="${v("first")}"></span><span class="hint"></span></label>
+    <label class="f"><span class="lt">${t("last")}${STAR}</span><span class="ctl"><input type="text" id="rg-last" dir="auto" maxlength="60" value="${v("last")}"></span><span class="hint"></span></label>
+    <label class="f"><span class="lt">${t("idnum")}${STAR}</span><span class="ctl"><input type="text" id="rg-id" dir="ltr" inputmode="numeric" maxlength="9" value="${v("idnum")}"></span><span class="hint"></span></label>
     <label class="f"><span class="lt">${t("backup")}</span><span class="ctl"><input type="email" id="rg-backup" dir="ltr" maxlength="100" value="${v("backup")}"></span><span class="hint">${t("backupHint")}</span></label>
    </div>
   </div>
   <div class="panel stack">
    <h2>${t("consent")}</h2>
    ${ed?`<p class="muted">${t("consentGiven")}</p>`:`<div class="consent">${t("consentIntro")}<ul>${T[lang].consentItems.map(x=>`<li>${esc(x)}</li>`).join("")}</ul></div>
-   <label class="check"><input type="checkbox" id="c-part"><span>${t("cPart")} <span class="muted">${t("req")}</span></span></label>
-   <label class="check"><input type="checkbox" id="c-grades"><span>${t("cGrades")} <span class="muted">${t("req")}</span></span></label>`}
+   <label class="check"><input type="checkbox" id="c-part"><span>${t("cPart")}${STAR}</span></label>
+   <label class="check"><input type="checkbox" id="c-grades"><span>${t("cGrades")}${STAR}</span></label>`}
    <label class="check"><input type="checkbox" id="c-recontact" ${P.recontact?"checked":""}><span>${t("cRecontact")} <span class="muted">${t("opt")}</span></span></label>
   </div>
   <div class="panel stack">
    <h2>${t("background")}</h2>
    <div class="grid2">
-    <label class="f"><span class="lt">${esc(q("q_year"))}</span><span class="ctl">${selO("rg-year","q_year",P.year,P.yearOther)}</span><span class="hint"></span></label>
-    <label class="f"><span class="lt">${esc(q("q_faculty"))}</span><span class="ctl">${selO("rg-fac","q_faculty",P.faculty,P.facultyOther)}</span><span class="hint">${t("doubleMajor")}</span></label>
-    <label class="f"><span class="lt">${esc(q("q_gpa"))}</span><span class="ctl"><input type="number" id="rg-gpa" min="0" max="100" value="${v("gpa")}"></span><span class="hint"></span></label>
-    <label class="f"><span class="lt">${esc(q("q_prev"))}</span><span class="ctl"><select id="rg-prev">${optsQ("q_prev",P.prev)}</select></span><span class="hint"></span></label>
+    <label class="f"><span class="lt">${esc(q("q_year"))}${STAR}</span><span class="ctl">${selO("rg-year","q_year",P.year,P.yearOther)}</span><span class="hint"></span></label>
+    <label class="f"><span class="lt">${esc(q("q_faculty"))}${STAR}</span><span class="ctl">${selO("rg-fac","q_faculty",P.faculty,P.facultyOther)}</span><span class="hint">${t("doubleMajor")}</span></label>
+    <label class="f"><span class="lt">${esc(q("q_gpa"))}${STAR}</span><span class="ctl"><input type="number" id="rg-gpa" min="0" max="100" value="${v("gpa")}"></span><span class="hint"></span></label>
+    <label class="f"><span class="lt">${esc(q("q_prev"))}${STAR}</span><span class="ctl"><select id="rg-prev">${optsQ("q_prev",P.prev)}</select></span><span class="hint"></span></label>
     ${customFields("Profile",P.custom||{})}
    </div>
   </div>

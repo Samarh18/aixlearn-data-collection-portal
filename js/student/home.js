@@ -2,7 +2,7 @@
 
 const mk=r=>esc(r).replace("{u}",'<code dir="ltr">User:</code>').replace("{a}",'<code dir="ltr">AI:</code>');
 const fileSection=()=>`<section class="filesec">
- <div class="filehead"><span class="fileicon">${DOC_ICON}</span><div><h3>${t("fileLabel")}</h3><p class="muted">${t("fileIntro")}</p></div></div>
+ <div class="filehead"><span class="fileicon">${DOC_ICON}</span><div><h3>${t("fileLabel")}${STAR}</h3><p class="muted">${t("fileIntro")}</p></div></div>
  <ul class="reqs">${T[lang].reqs.map(r=>`<li>${CHECK_ICON}<span>${mk(r)}</span></li>`).join("")}</ul>
  <label class="filepick"><input type="file" id="up-file" accept=".txt,text/plain"><span class="btn small" aria-hidden="true">${t("chooseFile")}</span><span id="up-fname" class="muted">${esc(pendingFile?pendingFile.name:t("noFileChosen"))}</span></label>
  <details class="howto"><summary>${t("howFile")}</summary>
@@ -16,7 +16,7 @@ const fileSection=()=>`<section class="filesec">
  <div class="proto"><span class="lbl">${t("demoHint")}</span><div class="btns"><button class="btn ghost small" id="up-sample-ok">${t("sampleOk")}</button><button class="btn ghost small" id="up-sample-bad">${t("sampleBad")}</button><button class="btn ghost small" id="up-sample-pdf" ${S.uploadDraft.purpose==="Assignment"?"":"hidden"}>${t("sampleOkPdf")}</button></div></div>
 </section>`;
 const partnerRow=(v="")=>`<div class="prow"><input type="email" class="partner-email" dir="ltr" maxlength="100" autocomplete="off" placeholder="name@campus.technion.ac.il" aria-label="${esc(t("partnerEmail"))}" value="${esc(v)}"><button type="button" class="iconbtn prm" aria-label="${esc(t("partnerRemove"))}" title="${esc(t("partnerRemove"))}">${X_ICON}</button></div>`;
-const partnerFields=(show,list)=>`<div class="partners" id="up-partner-email-wrap" ${show?"":"hidden"}><span class="lt">${esc(t("partnerEmail"))}</span><div id="up-partners">${(list&&list.length?list:[""]).map(partnerRow).join("")}</div><span class="hint">${esc(t("emailHint"))}</span><button type="button" class="linkbtn" id="up-partner-add">+ ${esc(t("partnerAdd"))}</button></div>`;
+const partnerFields=(show,list)=>`<div class="partners" id="up-partner-email-wrap" ${show?"":"hidden"}><span class="lt">${esc(t("partnerEmail"))}${STAR}</span><div id="up-partners">${(list&&list.length?list:[""]).map(partnerRow).join("")}</div><span class="hint">${esc(t("emailHint"))}</span><button type="button" class="linkbtn" id="up-partner-add">+ ${esc(t("partnerAdd"))}</button></div>`;
 const partnerValues=()=>[...document.querySelectorAll(".partner-email")].map(i=>i.value.trim().toLowerCase());
 function bindPartners(){
  const box=$("#up-partners"),add=$("#up-partner-add");
@@ -43,12 +43,12 @@ function homeView(){
   <h2>${t("uploadTitle")}</h2>
   <div class="split">
    <div class="panel stack" style="min-width:0">
-    <label class="f"><span class="lt">${esc(q("q_course"))}</span><span class="ctl">${courseSelect(d.course,d.courseOther)}</span><span class="hint"></span></label>
-    <label class="f"><span class="lt">${esc(q("q_tool"))}</span><span class="ctl">${selO("up-tool","q_tool",d.tool,d.toolOther)}</span><span class="hint"></span></label>
-    <label class="f"><span class="lt">${esc(q("q_purpose"))}</span><span class="ctl">${selO("up-purpose","q_purpose",d.purpose,d.purposeOther)}</span><span class="hint"></span></label>
-    <label class="f" id="up-moed-wrap" ${exam?"":"hidden"}><span class="lt">${esc(q("q_moed"))}</span><span class="ctl"><select id="up-moed">${optsQ("q_moed",d.moed)}</select></span><span class="hint"></span></label>
-    <label class="f" id="up-reason-wrap" ${moedB?"":"hidden"}><span class="lt">${esc(q("q_reason"))}</span><span class="ctl">${selO("up-reason","q_reason",d.reason,d.reasonOther)}</span><span class="hint"></span></label>
-    <label class="f" id="up-partner-wrap" ${d.purpose==="Assignment"?"":"hidden"}><span class="lt">${esc(q("q_partner"))}</span><span class="ctl"><select id="up-partner">${optsQ("q_partner",d.partner)}</select></span><span class="hint">${esc(t("partnerHint"))}</span></label>
+    <label class="f"><span class="lt">${esc(q("q_course"))}${STAR}</span><span class="ctl">${courseSelect(d.course,d.courseOther)}</span><span class="hint"></span></label>
+    <label class="f"><span class="lt">${esc(q("q_tool"))}${STAR}</span><span class="ctl">${selO("up-tool","q_tool",d.tool,d.toolOther)}</span><span class="hint"></span></label>
+    <label class="f"><span class="lt">${esc(q("q_purpose"))}${STAR}</span><span class="ctl">${selO("up-purpose","q_purpose",d.purpose,d.purposeOther)}</span><span class="hint"></span></label>
+    <label class="f" id="up-moed-wrap" ${exam?"":"hidden"}><span class="lt">${esc(q("q_moed"))}${STAR}</span><span class="ctl"><select id="up-moed">${optsQ("q_moed",d.moed)}</select></span><span class="hint"></span></label>
+    <label class="f" id="up-reason-wrap" ${moedB?"":"hidden"}><span class="lt">${esc(q("q_reason"))}${STAR}</span><span class="ctl">${selO("up-reason","q_reason",d.reason,d.reasonOther)}</span><span class="hint"></span></label>
+    <label class="f" id="up-partner-wrap" ${d.purpose==="Assignment"?"":"hidden"}><span class="lt">${esc(q("q_partner"))}${STAR}</span><span class="ctl"><select id="up-partner">${optsQ("q_partner",d.partner)}</select></span><span class="hint">${esc(t("partnerHint"))}</span></label>
     ${partnerFields(d.purpose==="Assignment"&&d.partner==="Yes",d.partnerEmails)}
     ${customFields("Each upload",{})}
     ${pdfSection(d.purpose==="Assignment")}

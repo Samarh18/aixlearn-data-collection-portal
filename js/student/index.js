@@ -7,7 +7,7 @@ function renderStudent(){
  return homeView();
 }
 function bindStudent(){
- bindCopy();bindSelects();
+ bindCopy();bindSelects();markRequired();
  if(S.step==="landing")bindLanding();
  else if(S.step==="signin")bindSignin();
  else if(S.step==="register"||S.step==="profile")bindRegister();

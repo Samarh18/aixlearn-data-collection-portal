@@ -29,6 +29,6 @@ function enhanceSelect(sel){
 }
 function syncDropdown(sel){
  const btn=sel.nextElementSibling;if(!sel.dataset.dd||!btn)return;
- const text=sel.options[sel.selectedIndex]?.text||"",q=sel.closest("label")?.querySelector(".lt")?.textContent||"";
+ const text=sel.options[sel.selectedIndex]?.text||"",q=sel.closest("label")?.querySelector(".lt")?.textContent.replace(/\*$/,"")||"";
  btn.textContent=text;btn.classList.toggle("empty",!sel.value);btn.setAttribute("aria-label",`${q} ${text}`.trim());
 }

@@ -63,3 +63,9 @@ input:focus-visible,select:focus-visible,button:focus-visible,textarea:focus-vis
 .partners .hint{font-weight:400;color:var(--muted)}
 .partners .linkbtn{align-self:flex-start;font-size:13.5px;font-weight:500}
 .partners:has(.invalid) .lt{color:var(--bad)}
+
+/* required marker and its footer explanation */
+.star{color:var(--bad);font-weight:600;margin-inline-start:3px}
+.reqnote{border-top:1px solid var(--line);font-size:13px;color:var(--muted)}
+.reqnote .wrap{padding-block:14px 24px}
+.reqnote .star{margin-inline:0}
