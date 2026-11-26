@@ -3,7 +3,7 @@
 function registerView(){
  const ed=S.step==="profile",P=ed?S.me:{};
  const v=k=>esc(P[k]??"");
- return `<div class="stack" style="max-width:720px">
+ return `<div class="stack reg">
   ${ed?`<div class="sectionhead"><h2>${t("myProfile")}</h2><button class="btn ghost small" id="pf-cancel">${t("cancel")}</button></div>`
   :`<div class="steps"><span class="done">${t("stepSigned")}</span><span class="on">${t("stepRegister")}</span><span>${t("stepUpload")}</span></div>`}
   <div class="panel stack">

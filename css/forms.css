@@ -69,3 +69,7 @@ input:focus-visible,select:focus-visible,button:focus-visible,textarea:focus-vis
 .reqnote{border-top:1px solid var(--line);font-size:13px;color:var(--muted)}
 .reqnote .wrap{padding-block:14px 24px}
 .reqnote .star{margin-inline:0}
+
+/* registration/profile: centred, so it sits in the same place in right-to-left and left-to-right */
+.reg{width:100%;max-width:720px;margin-inline:auto}
+.reqnote{text-align:center}
