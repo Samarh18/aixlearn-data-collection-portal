@@ -28,6 +28,12 @@
 .lp-who a.lab:hover{color:var(--accent)}
 @media (max-width:760px){.landing h1{font-size:25px}.landing h1 .q{font-size:.72em}.lp-steps{grid-template-columns:1fr}.lp-steps li::before{inset-inline-start:auto;inset-inline-end:10px}.lp-steps li{flex-direction:row;text-align:start;padding:12px 14px}}
 
+.pdfsec{border:1.5px dashed var(--ticket);border-radius:12px;padding:18px;display:flex;flex-direction:column;gap:14px;background:var(--ticket-soft)}
+.pdfsec .filehead h3{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px}
+.pdfsec .fileicon{background:var(--ticket)}
+.pdfsec .filepick{background:var(--surface)}
+.pdfsec .ticket.big{background:var(--ticket);color:var(--surface);font-size:18px;padding:12px 24px}
+.pdfsec .filehead p{font-size:14.5px}
 .filesec{border:1.5px solid var(--accent);border-radius:12px;padding:18px;display:flex;flex-direction:column;gap:14px;background:color-mix(in srgb,var(--accent-soft) 45%,var(--surface))}
 .filehead{display:flex;gap:12px;align-items:flex-start}
 .filehead p{font-size:13.5px;margin-top:2px}

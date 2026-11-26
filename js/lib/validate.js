@@ -13,3 +13,8 @@ function validate(name,text){
  if(labels.length<2)return{ok:false,key:"vMarkers"};
  return{ok:true,turns:labels[0][1]+labels[1][1]};
 }
+// Assignment PDF: .pdf name and a real PDF header. head = first bytes as text.
+function validatePdf(name,head){
+ if(!/\.pdf$/i.test(name)||!/^%PDF-/.test(head))return{ok:false,key:"vNotPdf"};
+ return{ok:true};
+}

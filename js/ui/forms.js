@@ -4,8 +4,8 @@ const OTHER="Other";
 const selO=(id,qid,sel,oth)=>`<select id="${id}" data-other="${id}-other">${optsQ(qid,sel)}</select><input type="text" id="${id}-other" class="other-input" dir="auto" maxlength="40" placeholder="${esc(t("pleaseSpecify"))}" value="${esc(oth||"")}" ${sel===OTHER?"":"hidden"}>`;
 const otherMissing=id=>$("#"+id).value===OTHER&&!$("#"+id+"-other").value.trim();
 const otherVal=id=>$("#"+id).value===OTHER?$("#"+id+"-other").value.trim():"";
-function syncSelects(){document.querySelectorAll("#app select").forEach(s=>{s.classList.toggle("empty",!s.value);if(s.dataset.other){const o=document.getElementById(s.dataset.other);if(o)o.hidden=s.value!==OTHER}})}
-function bindSelects(){syncSelects();document.querySelectorAll("#app select").forEach(s=>s.addEventListener("change",()=>{syncSelects();if(s.dataset.other&&s.value===OTHER)document.getElementById(s.dataset.other).focus()}))}
+function syncSelects(){document.querySelectorAll("#app select").forEach(s=>{syncDropdown(s);if(s.dataset.other){const o=document.getElementById(s.dataset.other);if(o)o.hidden=s.value!==OTHER}})}
+function bindSelects(){document.querySelectorAll("#app select").forEach(enhanceSelect);syncSelects();document.querySelectorAll("#app select").forEach(s=>s.addEventListener("change",()=>{syncSelects();if(s.dataset.other&&s.value===OTHER)document.getElementById(s.dataset.other).focus()}))}
 const optsQ=(qid,sel)=>`<option value="">${esc(t("choose"))}</option>`+qById(qid).opts.map(o=>`<option value="${esc(o.v)}" ${sel===o.v?"selected":""}>${esc(o[lang]||o.en||o.he)}</option>`).join("");
 const customQs=sc=>questions.filter(x=>!x.core&&!x.retired&&x.scope===sc);
 const customFields=(sc,ans={})=>customQs(sc).map(x=>{const id="cq-"+x.id,v=ans[x.id]??"",oth=x.type==="choice"&&x.opts.some(o=>o.v===OTHER);

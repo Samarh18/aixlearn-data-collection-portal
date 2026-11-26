@@ -13,7 +13,7 @@ let questions=[
 ];
 const CORE_TYPES={q_year:"choice",q_faculty:"choice",q_gpa:"number",q_prev:"choice",q_course:"course",q_tool:"choice",q_moed:"choice",q_purpose:"choice",q_reason:"choice"};
 const CORE_LISTS={q_year:YEARS,q_faculty:FACULTIES,q_prev:["Yes","No"],q_tool:TOOLS,q_moed:["Moed A","Moed B"],q_purpose:PURPOSES,q_reason:REASONS};
-const LOCKED={q_purpose:["Exam prep","Other"],q_moed:["Moed A","Moed B"],q_reason:["Other"],q_year:["Other"],q_faculty:["Other"],q_tool:["Other"]};
+const LOCKED={q_purpose:["Exam prep","Assignment"],q_moed:["Moed A","Moed B"],q_reason:["Other"],q_year:["Other"],q_faculty:["Other"],q_tool:["Other"]};
 let qSeq=0,optSeq=0;
 questions.forEach(x=>{x.core=true;x.required=true;x.type=CORE_TYPES[x.id];x.opts=(CORE_LISTS[x.id]||[]).map(v=>({v,he:(LBL.he[v]||v),ar:(LBL.ar[v]||v),en:v,locked:(LOCKED[x.id]||[]).includes(v)}))});
 const qById=id=>questions.find(x=>x.id===id);

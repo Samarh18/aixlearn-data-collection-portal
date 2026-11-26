@@ -29,3 +29,28 @@ input:focus-visible,select:focus-visible,button:focus-visible,textarea:focus-vis
 .check{display:flex;gap:10px;align-items:flex-start;font-size:14px;padding:10px 12px;border:1px solid var(--line);border-radius:8px}
 .check:has(input:checked){border-color:var(--accent);background:var(--accent-soft)}
 .check input{margin-top:5px;flex:none;accent-color:var(--accent)}
+
+/* course search box and styled dropdowns (same look) */
+.combo{position:relative}
+.combo ul{position:absolute;z-index:10;inset-inline:0;top:calc(100% + 4px);margin:0;padding:4px;list-style:none;max-height:260px;overflow:auto;background:var(--surface);border:1px solid var(--line);border-radius:10px;box-shadow:0 12px 28px rgba(0,0,0,.18);font-size:14.5px;font-weight:400}
+.combo li{padding:9px 10px;border-radius:6px;cursor:pointer;text-align:start}
+.combo li:hover,.combo li[aria-selected=true]{background:var(--accent-soft)}
+.combo li.pinned{position:sticky;top:-4px;background:var(--surface);border-bottom:1px solid var(--line);border-radius:6px 6px 0 0;color:var(--accent);font-weight:600}
+.combo li.pinned:hover,.combo li.pinned[aria-selected=true]{background:var(--accent-soft)}
+.combo li.none{color:var(--muted);cursor:default}
+.combo li.none:hover{background:none}
+.combo>select{position:absolute;inset-inline-start:0;bottom:0;width:1px;height:1px;opacity:0;pointer-events:none;padding:0;border:0}
+.dd-btn,.combo>input[role=combobox]{background-color:var(--surface);background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%23789a92' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center}
+#shell[dir=rtl] .dd-btn,#shell[dir=rtl] .combo>input[role=combobox]{background-position:left 14px center}
+.combo>input[type=text][role=combobox]{padding-inline-end:40px;text-overflow:ellipsis}
+.dd-btn{display:block;width:100%;font:inherit;font-size:15px;color:var(--fg);text-align:start;border:1px solid var(--line);border-radius:8px;padding:10px 12px;padding-inline-end:40px;cursor:pointer;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;transition:border-color .15s}
+.dd-btn:hover{border-color:var(--muted)}
+.dd-btn:focus,.dd-btn[aria-expanded=true]{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+.dd-btn.empty{color:var(--muted)}
+.combo>select.invalid~.dd-btn{border-color:var(--bad);box-shadow:0 0 0 3px var(--bad-soft)}
+@media (prefers-reduced-motion:no-preference){.combo>select.shake~.dd-btn{animation:shake .4s ease}}
+.combo li.active{background:var(--accent-soft)}
+.combo li[data-v][aria-selected=true]:not(.pinned){color:var(--accent);font-weight:600}
+
+/* Empty dir="auto" boxes default to left-to-right; keep their placeholder on the right in Hebrew and Arabic. */
+#shell[dir=rtl] input[dir=auto]:placeholder-shown{direction:rtl;text-align:right}

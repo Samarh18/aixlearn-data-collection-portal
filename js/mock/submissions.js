@@ -7,3 +7,4 @@ let submissions=[];
 })();
 const fname=s=>`AIX-${s.sid}-${s.pid}-${s.course}.txt`;
 submissions.forEach(s=>s.file=fname(s));
+submissions.forEach(s=>{if(s.purpose==="Assignment"&&s.ok&&parseInt(s.sid.slice(1),10)%2===0)s.pdf={name:`AIX-${s.sid}-${s.pid}-${s.course}-assignment.pdf`,size:150000}});
